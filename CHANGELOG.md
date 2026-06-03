@@ -8,9 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2026-06-03
 
 ### Added
-- `envspec.get()` with `cast`, `default`, and `validate` parameters
+- `specenv.get()` with `cast`, `default`, and `validate` parameters
 - `Schema` and `Var` for declarative, class-based configuration
-- `Namespace` prefix wrapper via `envspec.namespace()`
+- `Namespace` prefix wrapper via `specenv.namespace()`
 - `EnvCastError` and `EnvValidationError` with human-readable messages
 - Support for `int`, `float`, `bool`, `str`, `list`, `list[T]`, `pathlib.Path`
 - Bool casting: `1/0`, `true/false`, `yes/no`, `on/off` (case-insensitive)

@@ -1,11 +1,11 @@
-# envspec
+# specenv
 
 **Zero-dependency typed environment variable loader for Python**
 
-[![PyPI version](https://img.shields.io/pypi/v/envspec)](https://pypi.org/project/envspec/)
-[![Python versions](https://img.shields.io/pypi/pyversions/envspec)](https://pypi.org/project/envspec/)
+[![PyPI version](https://img.shields.io/pypi/v/specenv)](https://pypi.org/project/specenv/)
+[![Python versions](https://img.shields.io/pypi/pyversions/specenv)](https://pypi.org/project/specenv/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/abhijatchaturvedi/envspec/actions/workflows/ci.yml/badge.svg)](https://github.com/abhijatchaturvedi/envspec/actions/workflows/ci.yml)
+[![CI](https://github.com/abhijatchaturvedi/specenv/actions/workflows/ci.yml/badge.svg)](https://github.com/abhijatchaturvedi/specenv/actions/workflows/ci.yml)
 
 ---
 
@@ -30,12 +30,12 @@ HOSTS   = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if 
 ## The Solution
 
 ```python
-import envspec
+import specenv
 
-PORT    = envspec.get("PORT",           default=8080,  cast=int)
-DEBUG   = envspec.get("DEBUG",          default=False, cast=bool)
-TIMEOUT = envspec.get("TIMEOUT",        default=30.0,  cast=float)
-HOSTS   = envspec.get("ALLOWED_HOSTS",  default=[],    cast=list)
+PORT    = specenv.get("PORT",           default=8080,  cast=int)
+DEBUG   = specenv.get("DEBUG",          default=False, cast=bool)
+TIMEOUT = specenv.get("TIMEOUT",        default=30.0,  cast=float)
+HOSTS   = specenv.get("ALLOWED_HOSTS",  default=[],    cast=list)
 
 # If PORT is "abc" you get:
 # EnvCastError: Cannot cast PORT="abc" to int.
@@ -47,7 +47,7 @@ HOSTS   = envspec.get("ALLOWED_HOSTS",  default=[],    cast=list)
 ## Install
 
 ```bash
-pip install envspec
+pip install specenv
 ```
 
 Python 3.10+ required. No runtime dependencies.
@@ -59,13 +59,13 @@ Python 3.10+ required. No runtime dependencies.
 ### Simple `get`
 
 ```python
-import envspec
+import specenv
 
-PORT    = envspec.get("PORT",    default=8080,  cast=int)
-DEBUG   = envspec.get("DEBUG",   default=False, cast=bool)
-TIMEOUT = envspec.get("TIMEOUT", default=30.0,  cast=float)
-HOSTS   = envspec.get("ALLOWED_HOSTS", default=[], cast=list)        # list[str]
-PORTS   = envspec.get("PORTS",   default=[8080],  cast=list[int])    # list[int]
+PORT    = specenv.get("PORT",    default=8080,  cast=int)
+DEBUG   = specenv.get("DEBUG",   default=False, cast=bool)
+TIMEOUT = specenv.get("TIMEOUT", default=30.0,  cast=float)
+HOSTS   = specenv.get("ALLOWED_HOSTS", default=[], cast=list)        # list[str]
+PORTS   = specenv.get("PORTS",   default=[8080],  cast=list[int])    # list[int]
 ```
 
 When `default` is omitted and the variable is not set, `EnvCastError` is
@@ -86,7 +86,7 @@ Matching is **case-insensitive** (`TRUE`, `Yes`, `ON` all work).
 Group all variables into a single class for easier testing and injection:
 
 ```python
-from envspec import Schema, Var
+from specenv import Schema, Var
 
 class AppConfig(Schema):
     PORT        = Var(int,      default=8080)
@@ -108,7 +108,7 @@ cfg = AppConfig.load(env={"DB_URL": "sqlite:///test.db"})
 ### Validation
 
 ```python
-PORT = envspec.get(
+PORT = specenv.get(
     "PORT",
     cast=int,
     validate=lambda v: 1 <= v <= 65535,
@@ -125,11 +125,11 @@ class Config(Schema):
 ### Namespace / prefix
 
 ```python
-db    = envspec.namespace("DB_")
+db    = specenv.namespace("DB_")
 HOST  = db.get("HOST", default="localhost")      # reads DB_HOST
 PORT  = db.get("PORT", default=5432, cast=int)   # reads DB_PORT
 
-cache = envspec.namespace("CACHE_")
+cache = specenv.namespace("CACHE_")
 URL   = cache.get("URL", default="redis://localhost:6379")  # reads CACHE_URL
 ```
 
@@ -155,9 +155,9 @@ EnvValidationError: PORT=99999 failed validation (must satisfy the provided lamb
 
 | Symbol | Description |
 |--------|-------------|
-| `envspec.get(name, *, default, cast, validate)` | Read and optionally cast one variable |
-| `envspec.namespace(prefix)` | Return a `Namespace` that prepends `prefix` to every key |
-| `envspec.reset()` | Reset internal state (no-op in 0.1.0; safe to call in teardowns) |
+| `specenv.get(name, *, default, cast, validate)` | Read and optionally cast one variable |
+| `specenv.namespace(prefix)` | Return a `Namespace` that prepends `prefix` to every key |
+| `specenv.reset()` | Reset internal state (no-op in 0.1.0; safe to call in teardowns) |
 | `Schema` | Base class for declarative config |
 | `Var(cast_type, *, default, required, validate)` | Field descriptor used inside a `Schema` |
 | `Namespace` | Prefix-scoped view returned by `namespace()` |
@@ -173,7 +173,7 @@ EnvValidationError: PORT=99999 failed validation (must satisfy the provided lamb
 ## Contributing
 
 Bug reports and pull requests are welcome on the
-[GitHub issues page](https://github.com/abhijatchaturvedi/envspec/issues).
+[GitHub issues page](https://github.com/abhijatchaturvedi/specenv/issues).
 Please open an issue before starting large changes so we can discuss the
 approach first.
 

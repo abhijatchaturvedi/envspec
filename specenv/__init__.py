@@ -1,16 +1,16 @@
-"""envspec — zero-dependency typed environment variable loader for Python.
+"""specenv — zero-dependency typed environment variable loader for Python.
 
 Quick start::
 
-    import envspec
+    import specenv
 
-    PORT    = envspec.get("PORT",    default=8080,  cast=int)
-    DEBUG   = envspec.get("DEBUG",   default=False, cast=bool)
-    TIMEOUT = envspec.get("TIMEOUT", default=30.0,  cast=float)
+    PORT    = specenv.get("PORT",    default=8080,  cast=int)
+    DEBUG   = specenv.get("DEBUG",   default=False, cast=bool)
+    TIMEOUT = specenv.get("TIMEOUT", default=30.0,  cast=float)
 
 Schema-based::
 
-    from envspec import Schema, Var
+    from specenv import Schema, Var
 
     class Config(Schema):
         PORT   = Var(int,  default=8080)
@@ -83,11 +83,11 @@ def get(
 
     Examples
     --------
-    >>> import os, envspec
+    >>> import os, specenv
     >>> os.environ["PORT"] = "9000"
-    >>> envspec.get("PORT", cast=int)
+    >>> specenv.get("PORT", cast=int)
     9000
-    >>> envspec.get("MISSING", default=42)
+    >>> specenv.get("MISSING", default=42)
     42
     """
     raw = os.environ.get(name)
@@ -116,7 +116,7 @@ def namespace(prefix: str) -> Namespace:
 
     Example::
 
-        db = envspec.namespace("DB_")
+        db = specenv.namespace("DB_")
         host = db.get("HOST", default="localhost")  # reads DB_HOST
         port = db.get("PORT", default=5432, cast=int)  # reads DB_PORT
 

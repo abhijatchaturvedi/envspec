@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "envspec"
+name = "specenv"
 version = "0.1.0"
 description = "Zero-dependency typed environment variable loader for Python"
 readme = "README.md"
@@ -25,12 +25,12 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage   = "https://github.com/abhijatchaturvedi/envspec"
-Repository = "https://github.com/abhijatchaturvedi/envspec"
-Issues     = "https://github.com/abhijatchaturvedi/envspec/issues"
+Homepage   = "https://github.com/abhijatchaturvedi/specenv"
+Repository = "https://github.com/abhijatchaturvedi/specenv"
+Issues     = "https://github.com/abhijatchaturvedi/specenv/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["envspec"]
+packages = ["specenv"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

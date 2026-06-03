@@ -2,7 +2,7 @@
 
 import pytest
 
-from envspec import EnvCastError, EnvValidationError
+from specenv import EnvCastError, EnvValidationError
 
 
 def test_env_cast_error_is_exception():

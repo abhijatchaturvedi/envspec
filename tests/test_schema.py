@@ -2,7 +2,7 @@
 
 import pytest
 
-from envspec import EnvCastError, EnvValidationError, Schema, Var
+from specenv import EnvCastError, EnvValidationError, Schema, Var
 
 
 class AppConfig(Schema):
