@@ -5,7 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/specenv)](https://pypi.org/project/specenv/)
 [![Python versions](https://img.shields.io/pypi/pyversions/specenv)](https://pypi.org/project/specenv/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/abhijatchaturvedi/specenv/actions/workflows/ci.yml/badge.svg)](https://github.com/abhijatchaturvedi/specenv/actions/workflows/ci.yml)
+[![CI](https://github.com/abhijatchaturvedi/envspec/actions/workflows/ci.yml/badge.svg)](https://github.com/abhijatchaturvedi/envspec/actions/workflows/ci.yml)
 
 ---
 
